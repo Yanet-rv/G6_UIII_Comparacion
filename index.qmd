@@ -22,7 +22,9 @@ execute:
 
 -   Huaman Rimarachin Milver
 -   Rivera Jimenez yanet
+-   Silva Castro Jose Luis
 -   Tuesta Chichipe Aracely
+-   Visalot Chapa Jhener
 
 # Introducción
 
