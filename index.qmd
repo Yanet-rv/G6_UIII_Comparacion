@@ -1,0 +1,158 @@
+---
+title:  "COMPARACIÓN ANOTACIONES IMAGENES EN VEINTICINCO HOJAS DE NARANJA (Citrus × sinensis) EN IMAGEJ Y GEOGEBRA"
+format:
+  html:
+    toc: true
+    toc-location: left
+    theme: cosmo
+    number-sections: true
+    title-block-banner: "Imagen1.png"
+    css: styles.css
+    smooth-scroll: true
+editor: visual
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+> *“Comparación anotaciones imagenes en 25 hojas de naranja (citrus × sinensis) en imagej y geogebra".*
+
+# Integrantes
+
+-   Huaman Rimarachin Milver
+-   Rivera Jimenez yanet
+-   Tuesta Chichipe Aracely
+
+# Introducción
+
+El análisis morfométrico de estructuras vegetales es esencial en botánica y agronomía, ya que permite evaluar características anatómicas que reflejan el estado fisiológico y sanitario de las plantas (Easlon & Bloom, 2014). En los cítricos, el estudio de las hojas de naranja ofrece información importante sobre su desarrollo, la influencia del ambiente y posibles deficiencias o enfermedades.
+
+Las herramientas digitales han optimizado este tipo de análisis al brindar mediciones más precisas y reproducibles. En este trabajo se emplearon ImageJ y GeoGebra, dos plataformas que permiten realizar anotaciones y mediciones de área de forma eficiente (Ferreira & Rasband,2012). ImageJ user guide. ImageJ/Fiji. Aunque utilizan enfoques distintos, ambas resultan complementarias en el análisis morfométrico.
+
+Por su parte GeoGebra permite realizar anotaciones directas sobre imágenes, añadiendo puntos, textos y mediciones que facilitan el análisis visual y geométrico de objetos. Esta herramienta es útil para delimitar contornos, registrar dimensiones y documentar observaciones de forma precisa. Según Hohenwarter y Lavicza (2010), GeoGebra integra visualización y manipulación matemática, lo que la convierte en una plataforma versátil para análisis gráficos.
+
+Por lo tanto mediante el trabajo realizado se busco es comparar estas dos metodologías aplicadas a hojas de naranja, evaluando su precisión, confiabilidad y utilidad para establecer protocolos estandarizados de medición en investigaciones botánicas y agronómicas
+
+# Objetivo
+
+Comparar la efectividad y precisión de las anotaciones morfométricas realizadas en hojas de naranja utilizando los software ImageJ y GeoGebra, para determinar cuál herramienta proporciona mejores resultados en el análisis de estructuras foliares.
+
+# Materiales y Metodos
+
+## Materiales
+
+-   25 hojas de naranjas
+-   Telefono
+-   laptop
+-   Sofwares (Imaget & Geogebra )
+
+![](images/materiales.png)
+
+## Toma de fotografias
+
+<https://drive.google.com/file/d/118E9ZshPN6Fhf4Re-eT6_JNdV3In6dG2/view?usp=drive_link>
+
+## Etiquetado y anotación de imagenes
+
+En primer lugar codifico cada imagen luego se trabajo la anotación de imagenes con el sofware Imaget , posteriormente para realizar la comparación utilizo el sofware Geogebra.
+
+![](images/Imag_geoge.png)
+
+Posteriormente se realizo el registro de cada imagen trabajada en ambos sofawares en un documento de google sheet - Bloque I (Anotaciones del Imaget - Bloque II (Anotaciones del Geogebra)
+
+<https://docs.google.com/spreadsheets/d/17nCCKGzCjQJOKEjcFpaKC33ugF9zNo-yzf4ki2cs-KQ/edit?gid=0#gid=0>
+
+<https://drive.google.com/file/d/17hZh9cwhsp2ngpKlJ2pKmbWVr8RYoA-k/view?usp=drive_link>
+
+# Resultados
+
+Luedo de haber realizado cada una de las anotaciones en los diferentes sofwares se proceso los datps
+
+## Project Setup
+
+```{r}
+#| label:  setup
+
+source('https://inkaverse.com/setup.r')
+```
+
+## Importación de datos
+
+```{r}
+gs <- "https://docs.google.com/spreadsheets/d/17nCCKGzCjQJOKEjcFpaKC33ugF9zNo-yzf4ki2cs-KQ/edit?gid=0#gid=0" %>% 
+  as_sheets_id()
+
+fb <- gs %>% 
+  range_read(ss = .,sheet = "fb")
+```
+
+## Barplot area
+
+```{r}
+md <- aov(area ~ width*height + bloque, fb)
+anova(md)
+```
+
+## Regresion lineal de width vs height, referente al area
+
+```{r}
+p1 <- ggplot(fb, aes(x = width, y = height, color = area)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Width", y = "Height")
+p1
+```
+
+## Regresion lineal de width vs height, referente a los bloques
+
+```{r}
+p2 <- ggplot(fb, aes(x = width, y = height, color = bloque)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Width", y = "Height")
+p2
+```
+
+## Comparación de area y bloque
+
+```{r}
+p3 <- ggplot(fb, aes(x = bloque, y = area, fill = bloque)) +
+  stat_summary(geom = "bar", fun = mean) +
+  stat_summary(geom = "errorbar", fun.data = mean_se, width = 0.2) +
+  labs(x = "Bloque", y = "Area")
+p3
+```
+
+## Images en grids
+
+```{r}
+pt <- "orange.jpeg" %>% 
+  image_read() %>% 
+  image_ggplot()
+
+
+plot <- list(p1, p2, p3) %>% 
+  plot_grid(plotlist = ., ncol = 2, labels = "auto") %>% 
+  plot_grid(plotlist = pt, ncol = 2, rel_widths = c(3, 1)
+            , labels = c("", "e")) %>% 
+  ggsave(plot = ., "Figura-1.jpg"
+         , units = "cm"
+         , width = 35
+         , height = 15
+         )
+
+include_graphics(plot)
+```
+
+# Conclusión
+
+Los resultados muestran que tanto ImageJ como GeoGebra presentan una alta concordancia en las mediciones morfométricas de las hojas, como se observa en la relación lineal consistente entre ancho y altura en ambos bloques. Sin embargo, el Bloque II (GeoGebra) evidencia ligeramente mayor estabilidad y uniformidad en las estimaciones del área, reflejada en su media más alta y menor dispersión con respecto al Bloque I. Esto sugiere que GeoGebra proporciona anotaciones ligeramente más precisas al delimitar contornos y medir dimensiones, mientras que ImageJ sigue siendo eficaz, pero muestra una mayor variabilidad entre muestras. En conjunto, ambos softwares son funcionales, aunque GeoGebra destaca con mejores indicadores de precisión para el análisis de estructuras foliares.
+
+# Referencias
+
+\<Easlon, H. M., & Bloom, A. J. (2014). Easy Leaf Area: Automated digital image analysis for rapid and accurate measurement of leaf area. Applications in Plant Sciences, 2(7), 1400033. https://doi.org/10.3732/apps.1400033\>
+
+\<Ferreira, T., & Rasband, W. (2012). ImageJ user guide. ImageJ/Fiji\>
+
+\<Hohenwarter, M., & Lavicza, Z. (2010). GeoGebra: Dynamic mathematics for education. International Journal for Technology in Mathematics Education\>

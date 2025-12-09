@@ -1,1 +1,0 @@
-# G6_UIII_Comparacion
