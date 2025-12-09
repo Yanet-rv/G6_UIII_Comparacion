@@ -156,7 +156,7 @@ Los resultados muestran que tanto ImageJ como GeoGebra presentan una alta concor
 
 # Referencias
 
- Easlon, H. M., & Bloom, A. J. (2014). Easy Leaf Area: Automated digital image analysis for rapid and accurate measurement of leaf area. Applications in Plant Sciences, 2(7), 1400033. https://doi.org/10.3732/apps.1400033 
+  Easlon, H. M., & Bloom, A. J. (2014). Easy Leaf Area: Automated digital image analysis for rapid and accurate measurement of leaf area. Applications in Plant Sciences, 2(7), 1400033. https://doi.org/10.3732/apps.1400033 
 
   Ferreira, T., & Rasband, W. (2012). ImageJ user guide. ImageJ/Fiji 
 
