@@ -59,7 +59,10 @@ En primer lugar codifico cada imagen luego se trabajo la anotación de imagenes 
 
 ![](images/Imag_geoge.png)
 
-Posteriormente se realizo el registro de cada imagen trabajada en ambos sofawares en un documento de google sheet - Bloque I (Anotaciones del Imaget - Bloque II (Anotaciones del Geogebra)
+Posteriormente se realizo el registro de cada imagen trabajada en ambos sofawares en un documento de google sheet 
+
+- Bloque I (Anotaciones del Imaget 
+- Bloque II (Anotaciones del Geogebra)
 
 <https://docs.google.com/spreadsheets/d/17nCCKGzCjQJOKEjcFpaKC33ugF9zNo-yzf4ki2cs-KQ/edit?gid=0#gid=0>
 
