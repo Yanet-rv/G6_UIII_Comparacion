@@ -72,7 +72,7 @@ Posteriormente se realizo el registro de cada imagen trabajada en ambos sofaware
 
 # Resultados
 
-Luedo de haber realizado cada una de las anotaciones en los diferentes sofwares se proceso los datps
+Luedo de haber realizado cada una de las anotaciones en los diferentes sofwares se proceso los datos obtenidos
 
 ## Project Setup
 
